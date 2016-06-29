@@ -1,0 +1,8 @@
+---
+#Set hostname
+- name: Ensure hostname is set to {{ hosts_hostname.hostname }}
+  hostname: name={{ hosts_hostname.hostname }}
+
+#Configure /etc/hosts for fqdn and additional host entries
+- name: Configure /etc/hosts
+  template: src=hosts.j2 dest=/etc/hosts backup=yes owner=root group=root mode=644

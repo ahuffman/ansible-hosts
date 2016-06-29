@@ -1,0 +1,17 @@
+# {{ ansible_managed }}
+
+127.0.0.1   {{ hosts_hostname.hostname }}.{{ hosts_hostname.domain }} {{ hosts_hostname.hostname }} localhost localhost.localdomain localhost4 localhost4.localdomain4 {% for alias in hosts_hostname.alias %}{{ alias }} {% endfor %}
+
+::1   {{ hosts_hostname.hostname }}.{{ hosts_hostname.domain }} {{ hosts_hostname.hostname }} localhost localhost.localdomain localhost6 localhost6.localdomain6 {% for alias in hosts_hostname.alias %}{{ alias }} {% endfor %}
+
+{% for ip in hosts_hostname.add_ip %}
+{{ ip }}   {{ hosts_hostname.hostname }}.{{ hosts_hostname.domain }} {{ hosts_hostname.hostname }} localhost localhost.localdomain {% for alias in hosts_hostname.alias %}{{ alias }} {% endfor %}
+
+{% endfor %}
+{% for host in hosts_host %}
+{% if host.comment is defined %}
+# {{ host.comment }}
+{% endif %}
+{{ host.ip_addr }} {{ host.hostname }}.{{ host.domain }} {{ host.hostname }} {% for alias in host.alias %}{{ alias }} {% endfor %}
+
+{% endfor %}

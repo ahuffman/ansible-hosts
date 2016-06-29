@@ -1,0 +1,16 @@
+---
+# You should override this spec at the host_vars level
+hosts_hostname:
+  hostname: ''   #Short (non-fqdn) name of the host
+  domain: ''     #DNS domain of the host
+  alias: {}      #Optional - list of other names you'd like to able to resolve to this IP
+  add_ip: {}     #Optional - list of additional IPs the host you're configuring has
+
+# This spec is for additional hosts you would like defined in your host files and could be used at the group_vars level
+hosts_host:
+  - name: ''     #A name for this host entry i.e. 'my db server'
+    hostname: '' #Short (non-FQDN) name of the host
+    domain: ''   #DNS domain of the host
+    ip_addr: ''  #IP Address for the host entry
+    comment: ''  #Optional - if you'd like a comment in your host file above this host entry
+    alias: {}    #Optional - list of other names you'd like to be able to resolve to this ip
