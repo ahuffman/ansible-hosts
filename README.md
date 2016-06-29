@@ -4,20 +4,23 @@ An Ansible role to set a host's hostname and manage it's aliases along with addi
 
 ## Role Variables
 
-`hosts_hostname`:
-  `hostname`: ''
-  `domain`: ''
-  `alias`: {}      #Optional - list of other names you'd like to able to resolve to this IP
-  `add_ip`: {}     #Optional - list of additional ips the host you're configuring might have.  This will add all of your listed aliases to the host entry
+You should override this spec at the host_vars level
 
-# This spec is for additional hosts you would like defined in your host files and could be used at the group_vars level
-`hosts_host`:
-  - `name`: ''     #a name for this host entry i.e. 'my db server'
-    `hostname`: '' #short hostname i.e. not fqdn
-    `domain`: ''   #dns domain of host
-    `ip_addr`: ''
-    `comment`: ''  #Optional - if you'd like a comment in your host file above this host entry
-    `alias`: {}    #Optional - list of other names you'd like to be able to resolve to this IP
+       `hosts_hostname`:
+         `hostname`: ''
+         `domain`: ''
+         `alias`: {}      #Optional - list of other names you'd like to able to resolve to this IP
+         `add_ip`: {}     #Optional - list of additional ips the host you're configuring might have.  This will add all of your listed aliases to the host entry
+
+This spec is for additional hosts you would like defined in your host files and could be used at the group_vars level
+
+       `hosts_host`:
+          - `name`: ''     #a name for this host entry i.e. 'my db server'
+            `hostname`: '' #short hostname i.e. not fqdn
+            `domain`: ''   #dns domain of host
+            `ip_addr`: ''
+            `comment`: ''  #Optional - if you'd like a comment in your host file above this host entry
+            `alias`: {}    #Optional - list of other names you'd like to be able to resolve to this IP
 
 ## Example Playbook
 
