@@ -1,4 +1,4 @@
-# Hosts
+# ahuffman.hosts
 
 An Ansible role to set a host's hostname and manage it's aliases along with additional host entries.
 
