@@ -67,6 +67,18 @@ This spec is for additional hosts you would like defined in your host files and 
       roles:
          - ahuffman.hosts
 
+    The /etc/hosts file produced by the above example would look like:
+    # Ansible managed: /etc/ansible/roles/hosts/templates/hosts.j2 modified on 2016-06-30 12:05:02 by root on huff-kubmst01
+
+    127.0.0.1   myserver1.foo.bar.com myserver1 localhost localhost.localdomain localhost4 localhost4.localdomain4 webserver1.foo.bar.com webserver1 www.foo.bar.com www db1.foo.bar.com db1
+    ::1   myserver1.foo.bar.com myserver1 localhost localhost.localdomain localhost6 localhost6.localdomain6 webserver1.foo.bar.com webserver1 www.foo.bar.com www db1.foo.bar.com db1
+    192.168.122.50   myserver1.foo.bar.com myserver1 localhost localhost.localdomain webserver1.foo.bar.com webserver1 www.foo.bar.com www db1.foo.bar.com db1
+    192.168.122.51   myserver1.foo.bar.com myserver1 localhost localhost.localdomain webserver1.foo.bar.com webserver1 www.foo.bar.com www db1.foo.bar.com db1
+    192.168.122.52   myserver1.foo.bar.com myserver1 localhost localhost.localdomain webserver1.foo.bar.com webserver1 www.foo.bar.com www db1.foo.bar.com db1
+    # The other webserver that does stuff
+    192.168.122.60   myserver2.foo.bar.com myserver2 intranet intranet.foo.bar.com helpdesk helpdesk.foo.bar.com
+    # App server 1
+    192.168.122.70   appserver2.foo.bar.com appserver2
 
 ## License
 

@@ -15,7 +15,7 @@
 {% if host.comment is defined %}
 # {{ host.comment }}
 {% endif %}
-{{ host.ip_addr }} {{ host.hostname }}.{{ host.domain }} {{ host.hostname }} {% if host.alias is defined %}{% for alias in host.alias %}{{ alias }} {% endfor %}{% endif %}
+{{ host.ip_addr }}   {{ host.hostname }}.{{ host.domain }} {{ host.hostname }} {% if host.alias is defined %}{% for alias in host.alias %}{{ alias }} {% endfor %}{% endif %}
 
 {% endfor %}
 {% endif %}
