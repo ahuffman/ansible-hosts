@@ -68,7 +68,7 @@ This spec is for additional hosts you would like defined in your host files and 
          - ahuffman.hosts
 
     The /etc/hosts file produced by the above example would look like:
-    # Ansible managed: /etc/ansible/roles/hosts/templates/hosts.j2 modified on 2016-06-30 12:05:02 by root on huff-kubmst01
+    # Ansible managed: /etc/ansible/roles/hosts/templates/hosts.j2 modified on .......
 
     127.0.0.1   myserver1.foo.bar.com myserver1 localhost localhost.localdomain localhost4 localhost4.localdomain4 webserver1.foo.bar.com webserver1 www.foo.bar.com www db1.foo.bar.com db1
     ::1   myserver1.foo.bar.com myserver1 localhost localhost.localdomain localhost6 localhost6.localdomain6 webserver1.foo.bar.com webserver1 www.foo.bar.com www db1.foo.bar.com db1
