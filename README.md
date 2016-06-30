@@ -4,7 +4,7 @@ An Ansible role to set a host's hostname and manage it's aliases along with addi
 
 ## Role Variables
 
-You should override this spec at the host_vars level.  These settings apply to a specific host, and the hostname will be set with the Ansible hostname module based on the hosts_hostname.hostname variable.  /etc/hosts will update the loopback IPv4 and IPv6 entries with the appropriate hostname and FQDN from this spec.  Additional IPs can be added with `add_ip` and will add the aliases specified under alias to those host entries.
+You should override this spec at the host_vars level.  These settings apply to a specific host, and the hostname will be set with the Ansible hostname module based on the hosts_hostname.hostname variable.  /etc/hosts will update the loopback IPv4 and IPv6 entries with the appropriate hostname and FQDN from this spec.  Additional IPs can be added with `add_ip` and will add the aliases specified under `hosts_hostname.alias` to those host entries.  If you don't want all the same alias you would have to use the hosts_host spec below to achieve that rather than hosts_hostname.
 
        `hosts_hostname`:
          `hostname`: ''
