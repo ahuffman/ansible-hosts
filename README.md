@@ -11,6 +11,7 @@ You should override this spec at the host_vars level.  These settings apply to a
          `domain`: ''
          `alias`: []      #Optional - list of other names you'd like to able to resolve to this IP
          `add_ip`: []     #Optional - list of additional ips the host you're configuring might have.  This will add all of your listed aliases to the host entry
+         `alias_loopback`: False #Required; Whether or not to add the host's entries to the loopback ip (e.g. 127.0.0.1 or ::1)
 
 This spec is for additional hosts you would like defined in your host files and could be used at the group_vars level.  The variables available are quite similar to those above with the exception of `comment` which can add a comment above a host entry.
 
@@ -41,6 +42,7 @@ This spec is for additional hosts you would like defined in your host files and 
             - 192.168.122.50
             - 192.168.122.51
             - 192.168.122.52
+          alias_loopback: True
 
     /etc/ansible/group_vars/servers/hosts.yml:
          ---

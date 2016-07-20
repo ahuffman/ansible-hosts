@@ -5,6 +5,7 @@ hosts_hostname:
   domain: ''     #DNS domain of the host
   alias: []      #Optional - list of other names you'd like to able to resolve to this IP
   add_ip: []     #Optional - list of additional IPs the host you're configuring has
+  alias_loopback: False  #whether or not to add the host's entries to the loopback ip (e.g. 127.0.0.1)
 
 # This spec is for additional hosts you would like defined in your host files and could be used at the group_vars level
 hosts_host:
