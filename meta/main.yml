@@ -1,12 +1,12 @@
 galaxy_info:
-  author: Andrew J. Huffman
-  description: An Ansible role to set a host's hostname and manage it's aliases along with additional host entries.
-  #company: your company (optional)
-  
+  author: "Andrew J. Huffman"
+  description: "An Ansible role to set a host's hostname and manage /etc/hosts entries."
+  company: "Red Hat"
+
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
   # issue_tracker_url: http://example.com/issue/tracker
-  
+
   # Some suggested licenses:
   # - BSD (default)
   # - MIT
@@ -14,9 +14,9 @@ galaxy_info:
   # - GPLv3
   # - Apache
   # - CC-BY
-  license: MIT
-  
-  min_ansible_version: 1.2
+  license: "MIT"
+
+  min_ansible_version: "2.3"
 
   # Optionally specify the branch Galaxy will use when accessing the GitHub
   # repo for this role. During role install, if no tags are available,
@@ -25,22 +25,22 @@ galaxy_info:
   # branch will be accepted. Otherwise, in all cases, the repo's default branch
   # (usually master) will be used.
   #github_branch:
-  
+
   #
   # Below are all platforms currently available. Just uncomment
   # the ones that apply to your role. If you don't see your
   # platform on this list, let us know and we'll get it added!
   #
   platforms:
-  - name: EL
+  - name: "EL"
     versions:
-    - all
+    - "all"
   #  - 5
   #  - 6
   #  - 7
-  - name: GenericUNIX
+  - name: "GenericUNIX"
     versions:
-    - all
+    - "all"
   #  - any
   #- name: Solaris
   #  versions:
@@ -50,9 +50,9 @@ galaxy_info:
   #  - 11.1
   #  - 11.2
   #  - 11.3
-  - name: Fedora
+  - name: "Fedora"
     versions:
-    - all
+    - "all"
   #  - 16
   #  - 17
   #  - 18
@@ -61,9 +61,9 @@ galaxy_info:
   #  - 21
   #  - 22
   #  - 23
-  - name: opensuse
+  - name: "opensuse"
     versions:
-    - all
+    - "all"
   #  - 12.1
   #  - 12.2
   #  - 12.3
@@ -114,9 +114,9 @@ galaxy_info:
   #  - 9.1
   #  - 9.2
   #  - 9.3
-  - name: Ubuntu
+  - name: "Ubuntu"
     versions:
-    - all
+    - "all"
   #  - lucid
   #  - maverick
   #  - natty
@@ -130,26 +130,26 @@ galaxy_info:
   #  - vivid
   #  - wily
   #  - xenial
-  - name: SLES
+  - name: "SLES"
     versions:
-    - all
+    - "all"
   #  - 10SP3
   #  - 10SP4
   #  - 11
   #  - 11SP1
   #  - 11SP2
   #  - 11SP3
-  - name: GenericLinux
+  - name: "GenericLinux"
     versions:
-    - all
+    - "all"
   #  - any
   #- name: NXOS
   #  versions:
   #  - all
   #  - any
-  - name: Debian
+  - name: "Debian"
     versions:
-    - all
+    - "all"
   #  - etch
   #  - jessie
   #  - lenny
@@ -157,11 +157,12 @@ galaxy_info:
   #  - squeeze
   #  - stretch
   #  - wheezy
-  
-  galaxy_tags: 
-    - System
-    - /etc/hosts
+
+  galaxy_tags:
+    - system
+    - hosts
     - hostname
+    - dns
     # List tags for your role here, one per line. A tag is
     # a keyword that describes and categorizes the role.
     # Users find roles by searching for tags. Be sure to

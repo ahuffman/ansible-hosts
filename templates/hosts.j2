@@ -1,21 +1,40 @@
 # {{ ansible_managed }}
-
-127.0.0.1  {% if hosts_hostname.alias_loopback == True %} {{ hosts_hostname.hostname }}.{{ hosts_hostname.domain }} {{ hosts_hostname.hostname }}{% endif %} localhost localhost.localdomain localhost4 localhost4.localdomain4 {% if hosts_hostname.alias is defined %}{% if hosts_hostname.alias_loopback == True %}{% for alias in hosts_hostname.alias %}{{ alias }} {% endfor %}{% endif %}{% endif %}
-
-::1  {% if hosts_hostname.alias_loopback == True %} {{ hosts_hostname.hostname }}.{{ hosts_hostname.domain }} {{ hosts_hostname.hostname }}{% endif %} localhost localhost.localdomain localhost6 localhost6.localdomain6 {% if hosts_hostname.alias is defined %}{% if hosts_hostname.alias_loopback == True %}{% for alias in hosts_hostname.alias %}{{ alias }} {% endfor %}{% endif %}{% endif %}
-
-{% if hosts_hostname.add_ip is defined %}
-{% for ip in hosts_hostname.add_ip %}
-{{ ip }}   {{ hosts_hostname.hostname }}.{{ hosts_hostname.domain }} {{ hosts_hostname.hostname }} localhost localhost.localdomain {% if hosts_hostname.alias is defined %}{% for alias in hosts_hostname.alias %}{{ alias }} {% endfor %}{% endif %}
+{% if hosts_hostname is defined %}
+{% if hosts_hostname is defined and hosts_hostname.alias_loopback %}
+127.0.0.1        {{ hosts_hostname.hostname }}.{{ hosts_hostname.domain }} {{ hosts_hostname.hostname }}{% if hosts_hostname.alias is defined %}{% for alias in hosts_hostname.alias %} {{ alias }}{% endfor %}{% endif %} localhost localhost.localdomain localhost4 localhost4.localdomain4
+{% endif %}
+{% if hosts_hostname is defined and not hosts_hostname.alias_loopback %}
+127.0.0.1        localhost localhost.localdomain localhost4 localhost4.localdomain4
+{% endif %}
+{% if hosts_hostname and hosts_hostname.ipv6 %}
+{% if hosts_hostname.alias_loopback %}
+::1              {{ hosts_hostname.hostname }}.{{ hosts_hostname.domain }} {{ hosts_hostname.hostname }}{% if hosts_hostname.alias is defined %}{% for alias in hosts_hostname.alias %} {{ alias }}{% endfor %}{% endif %} localhost localhost.localdomain localhost6 localhost6.localdomain6
+{% endif %}
+{% if not hosts_hostname.alias_loopback %}
+::1              localhost localhost.localdomain localhost6 localhost6.localdomain6
+{% endif %}
+{% endif %}
+{% if hosts_hostname and hosts_hostname.add_ips %}
+{% for ip in hosts_hostname.add_ips %}
+{% set space = 18 - ip | length %}
+{{ ip }}{% for i in range(1, space,1) %} {% endfor %}{{ hosts_hostname.hostname }}.{{ hosts_hostname.domain }} {{ hosts_hostname.hostname }}{% if hosts_hostname.alias is defined %}{% for alias in hosts_hostname.alias %} {{ alias }}{% endfor %}{% endif %}
 
 {% endfor %}
 {% endif %}
-{% if hosts_host is defined %}
-{% for host in hosts_host %}
+{% else %}
+{# Handle localhost loopback entry when hosts_hostname is undefined #}
+{% if hosts_add_hosts is defined %}
+127.0.0.1        localhost localhost.localdomain localhost4 localhost4.localdomain4
+{% endif %}
+{% endif %}
+
+{% if hosts_add_hosts is defined %}
+{% for host in hosts_add_hosts %}
 {% if host.comment is defined %}
 # {{ host.comment }}
 {% endif %}
-{{ host.ip_addr }}   {{ host.hostname }}.{{ host.domain }} {{ host.hostname }} {% if host.alias is defined %}{% for alias in host.alias %}{{ alias }} {% endfor %}{% endif %}
+{% set space = 18 - host.ip_addr | length %}
+{{ host.ip_addr }}{% for i in range(1, space,1) %} {% endfor %}{{ host.hostname }}.{{ host.domain }} {{ host.hostname }}{% if host.alias is defined %}{% for alias in host.alias %} {{ alias }}{% endfor %}{% endif %}
 
 {% endfor %}
 {% endif %}

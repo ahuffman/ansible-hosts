@@ -1,16 +1,20 @@
 ---
-#Set hostname
-- name: Ensure hostname is set to {{ hosts_hostname.hostname }}
-  hostname: 
+- name: "Ensure system's hostname is set"
+  hostname:
     name: "{{ hosts_hostname.hostname }}"
+  when:
+    - "hosts_hostname is defined"
+    - "hosts_hostname.hostname is defined"
+    - "hosts_set_hostname | default(True)"
+  become: True
 
-#Configure /etc/hosts for fqdn and additional host entries
-- name: Configure /etc/hosts
-  template: 
-    src: hosts.j2
-    dest: /etc/hosts 
-    backup: yes 
-    owner: root 
-    group: root 
-    mode: 644
-  become: yes
+- name: "Configure /etc/hosts"
+  template:
+    src: "hosts.j2"
+    dest: "/etc/hosts"
+    backup: "{{ hosts_backup | default(True) }}"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  when: "hosts_hostname is defined or hosts_add_hosts is defined"
+  become: True
