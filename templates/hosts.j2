@@ -1,12 +1,12 @@
 # {{ ansible_managed }}
-{% if hosts_hostname is defined %}
-{% if hosts_hostname is defined and hosts_hostname.alias_loopback %}
+{% if hosts_hostname is defined and hosts_hostname.hostname is defined and hosts_hostname.alias_loopback is defined and hosts_hostname.domain is defined and hosts_hostname.ipv6 is defined %}
+{% if hosts_hostname.alias_loopback %}
 127.0.0.1        {{ hosts_hostname.hostname }}.{{ hosts_hostname.domain }} {{ hosts_hostname.hostname }}{% if hosts_hostname.alias is defined %}{% for alias in hosts_hostname.alias %} {{ alias }}{% endfor %}{% endif %} localhost localhost.localdomain localhost4 localhost4.localdomain4
 {% endif %}
 {% if hosts_hostname is defined and not hosts_hostname.alias_loopback %}
 127.0.0.1        localhost localhost.localdomain localhost4 localhost4.localdomain4
 {% endif %}
-{% if hosts_hostname and hosts_hostname.ipv6 %}
+{% if hosts_hostname.ipv6 %}
 {% if hosts_hostname.alias_loopback %}
 ::1              {{ hosts_hostname.hostname }}.{{ hosts_hostname.domain }} {{ hosts_hostname.hostname }}{% if hosts_hostname.alias is defined %}{% for alias in hosts_hostname.alias %} {{ alias }}{% endfor %}{% endif %} localhost localhost.localdomain localhost6 localhost6.localdomain6
 {% endif %}
@@ -14,7 +14,7 @@
 ::1              localhost localhost.localdomain localhost6 localhost6.localdomain6
 {% endif %}
 {% endif %}
-{% if hosts_hostname and hosts_hostname.add_ips %}
+{% if hosts_hostname.add_ips is defined and hosts_hostname.add_ips | length > 0 %}
 {% for ip in hosts_hostname.add_ips %}
 {% set space = 18 - ip | length %}
 {{ ip }}{% for i in range(1, space,1) %} {% endfor %}{{ hosts_hostname.hostname }}.{{ hosts_hostname.domain }} {{ hosts_hostname.hostname }}{% if hosts_hostname.alias is defined %}{% for alias in hosts_hostname.alias %} {{ alias }}{% endfor %}{% endif %}
@@ -28,13 +28,15 @@
 {% endif %}
 {% endif %}
 
-{% if hosts_add_hosts is defined %}
+{% if hosts_add_hosts is defined and hosts_add_hosts | length > 0 %}
 {% for host in hosts_add_hosts %}
+{% if host.hostname is defined and host.domain is defined and host.ip_addr is defined %}
 {% if host.comment is defined %}
 # {{ host.comment }}
 {% endif %}
 {% set space = 18 - host.ip_addr | length %}
 {{ host.ip_addr }}{% for i in range(1, space,1) %} {% endfor %}{{ host.hostname }}.{{ host.domain }} {{ host.hostname }}{% if host.alias is defined %}{% for alias in host.alias %} {{ alias }}{% endfor %}{% endif %}
 
+{% endif %}
 {% endfor %}
 {% endif %}
