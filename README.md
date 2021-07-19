@@ -1,3 +1,5 @@
+![Ansible Role](https://img.shields.io/ansible/role/d/10653)
+
 # ahuffman.hosts
 
 An Ansible role to set a host's hostname and manage /etc/hosts entries.
